@@ -12,6 +12,8 @@ class Note : public QWidget
     Q_PROPERTY( QString text READ getText WRITE setText )
     Q_PROPERTY( QPoint pos READ getPos WRITE setPos )
     Q_PROPERTY( QPoint pos READ getPos WRITE move )
+    Q_PROPERTY( addNew RESET )
+    Q_PROPERTY( addNews RESET )
 
 public:
     explicit Note(QWidget *parent = 0);
@@ -29,6 +31,9 @@ public slots:
 
     void move(const QPoint & pos) { QWidget::move( pos ); }
     void move(int x, int y) { move( QPoint( x, y ) ); }
+
+    void addNew() { Note * n = new Note(); n->show(); }
+    void addNews( int count ) { while ( count-- ) addNew(); }
 
 private:
     QLineEdit * lEditName;
